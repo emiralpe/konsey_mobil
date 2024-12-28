@@ -1,1 +1,2 @@
 # konsey_mobil
+Selamlarrrr
