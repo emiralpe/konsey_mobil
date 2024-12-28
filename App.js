@@ -1,20 +1,64 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from "react-native";
+import HomeScreen from "./components/HomeScreen";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AppLoading from 'expo-app-loading';
+import * as Font from 'expo-font';
+import { useEffect, useState } from "react";
+import LoginScreen from "./components/LoginScreen";
+import SignUpScreen from "./components/SignUpScreen";
+import "./global.css"
+import HomePageScreen from "./components/HomePageScreen";
+import SupportScreen from "./components/SupportScreen";
+import OkimerScreen from "./components/OkimerScreen";
+
+const Stack = createNativeStackNavigator();
+
+
+
+const loadFonts = () => {
+  return Font.loadAsync({
+    'Regular': require('./assets/fonts/RalewayRegular.ttf'),
+    'Semibold': require('./assets/fonts/RalewaySemiBold.ttf'),
+    'Medium': require('./assets/fonts/RalewayMedium.ttf'),
+    'Bold': require('./assets/fonts/RalewayBold.ttf'),
+  });
+};
 
 export default function App() {
+
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    loadFonts()
+      .then(() => setFontsLoaded(true))
+      .catch((err) => console.error(err));
+  }, []);
+  if (!fontsLoaded) {
+    return <AppLoading startAsync={loadFonts} onFinish={() => setFontsLoaded(true)} onError={(err) => console.error(err)} />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{
+        headerShown: false,
+      }}>
+        <Stack.Screen name="Öğrenci Konseyi App" component={HomeScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="HomePage" component={HomePageScreen} />
+        <Stack.Screen name="Support" component={SupportScreen} />
+        <Stack.Screen name="Okimer" component={OkimerScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
