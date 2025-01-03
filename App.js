@@ -11,6 +11,7 @@ import "./global.css"
 import HomePageScreen from "./components/HomePageScreen";
 import SupportScreen from "./components/SupportScreen";
 import OkimerScreen from "./components/OkimerScreen";
+import ClubsScreen from "./components/ClubsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -49,6 +50,8 @@ export default function App() {
         <Stack.Screen name="HomePage" component={HomePageScreen} />
         <Stack.Screen name="Support" component={SupportScreen} />
         <Stack.Screen name="Okimer" component={OkimerScreen} />
+        <Stack.Screen name="Clubs" component={ClubsScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

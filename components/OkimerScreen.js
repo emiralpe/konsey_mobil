@@ -4,9 +4,18 @@ import tailwind from 'twrnc'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Feather from '@expo/vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
+import { SelectList } from 'react-native-dropdown-select-list';
 
 export default function Okimer() {
     const navigation = useNavigation();
+    const [selected, setSelected] = React.useState("");
+  
+  const data = [
+      {key:'1', value:'Konu'},
+      {key:'2', value:'Ürünler'},
+      {key:'3', value:'Sipariş'},
+      
+  ]
   return (
     <View>
         <View className='flex-row mt-20 items-center justify-between'>
@@ -26,16 +35,24 @@ export default function Okimer() {
   shadowRadius: 8, 
   backgroundColor: 'white'
 }]}>
-  <TextInput fontFamily="Bold"
-    className='mb-4 p-4 text-black rounded-xl ' style={{ marginLeft: -10, marginRight: -10, height: 50 }}
-    placeholder="Konu Seç" placeholderTextColor={'#24428a'}
-  />
-  <TextInput fontFamily="SemiBold"
-    style={[tailwind`mb-4 p-4 text-black rounded-xl border-[0.2] border-[#24428a]`, { marginLeft: -10, marginRight: -10, height: 50 }]}
+  <SelectList 
+        className='text-[#24428a] border-[#24428a]'
+        setSelected={(val) => setSelected(val)} 
+        data={data} 
+        save="value"
+        placeholder='Konu Seç'
+        boxStyles={styles.selectBox} // SelectList kutusunun stili
+        inputStyles={styles.selectInput} // SelectList giriş alanının stili
+        dropdownStyles={styles.selectDropdown} // SelectList açılır menüsünün stili
+        dropdownItemStyles={styles.selectDropdownItem} // SelectList açılır menü öğelerinin stili
+    />
+  
+  <TextInput  fontFamily="SemiBold"
+    style={[tailwind`mt-4 mb-4 p-4 text-[#24428a] rounded-xl border-[0.2] border-[#24428a]`, {height: 50 }]}
     placeholder="Başlık" placeholderTextColor={'#24428a'}
   />
   <TextInput fontFamily="SemiBold"
-    style={[tailwind`mb-4 p-4 text-black rounded-xl border-[0.2] border-[#24428a]`, { marginLeft: -10, marginRight: -10, height: 120,textAlignVertical: 'top' }]} multiline={true} numberOfLines={1}
+    style={[tailwind`mb-4 p-4 text-[#24428a] rounded-xl border-[0.2] border-[#24428a]`, {height: 120,textAlignVertical: 'top' }]} multiline={true} numberOfLines={1}
     placeholder="Mesajınız" placeholderTextColor={'#24428a'}
   />
   <TouchableOpacity style={[tailwind`bg-[#2AB8E7] w-auto rounded-xl px-5 py-2 `]}>
@@ -43,9 +60,17 @@ export default function Okimer() {
   </TouchableOpacity>
 </View>
 
-
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  selectBox:{
+    borderColor: '#24428a', 
+    borderRadius: 15,
+  },
+  selectInput:{
+    fontFamily: "Semibold",
+    color: '#24428a',
+  },
+})

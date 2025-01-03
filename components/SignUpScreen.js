@@ -24,25 +24,25 @@ export default function SignUpScreen() {
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 35 }}>
         <Text className="text-2xl ml-12 pt-20 text-[#24428a] border-[#24428a]" style={{fontFamily:"Semibold"}}>Adınız</Text>
-        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border-2 border-[#24428a]" />
+        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border border-[#24428a]" />
 
         <Text className="text-2xl ml-12 text-[#24428a] " style={{fontFamily:"Semibold"}}>Soyadınız</Text>
-        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border-2 border-[#24428a]" />
+        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border border-[#24428a]" />
 
         <Text className="text-2xl ml-12 text-[#24428a]" style={{fontFamily:"Semibold"}}>Doğum Tarihiniz</Text>
-        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border-2 border-[#24428a]"/>
+        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border border-[#24428a]"/>
 
         <Text className="text-2xl ml-12 text-[#24428a]" style={{fontFamily:"Semibold"}}>Öğrenci Numaranız</Text>
-        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border-2 border-[#24428a]"/>
+        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border border-[#24428a]"/>
 
         <Text className="text-2xl ml-12 text-[#24428a]" style={{fontFamily:"Semibold"}}>Telefon Numaranız</Text>
-        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border-2 border-[#24428a]" />
+        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border border-[#24428a]" />
 
         <Text className="text-2xl ml-12 text-[#24428a]" style={{fontFamily:"Semibold"}}>E-posta Adresiniz</Text>
-        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border-2 border-[#24428a]" />
+        <TextInput className=" p-3 mx-8 my-3 mt-1 rounded-xl border border-[#24428a]" />
 
         <Text className="text-2xl ml-12 text-[#24428a]" style={{fontFamily:"Semibold"}}>İkametgah</Text>
-        <TextInput className=" p-10 mx-8 my-3 mt-1 rounded-xl border-2 border-[#24428a]" style={ {paddingTop: 5, paddingLeft: 10, lineHeight: 18, height: 120, textAlignVertical: 'top' }} multiline={true} numberOfLines={1} />
+        <TextInput className=" p-10 mx-8 my-3 mt-1 rounded-xl border border-[#24428a]" style={ {paddingTop: 5, paddingLeft: 10, lineHeight: 18, height: 120, textAlignVertical: 'top' }} multiline={true} numberOfLines={1} />
 
         <Text className="text-2xl ml-12 text-[#24428a]" style={{fontFamily:"Semibold"}}>İlgi Alanlarınız</Text>
         <View>

@@ -11,7 +11,7 @@ export default function Buttons() {
   const navigation = useNavigation();
   return (
     <View className='flex-row flex-wrap justify-between mx-5'>
-      <TouchableOpacity className='flex-row items-center  bg-[#24428a] rounded-lg w-50 py-4'>
+      <TouchableOpacity onPress={()=> navigation.navigate('Clubs')} className='flex-row items-center  bg-[#24428a] rounded-lg w-50 py-4'>
         <Fontisto className='ml-3' name="world" size={24} color="#fff" />
         <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Kulüpler</Text>
       </TouchableOpacity>
