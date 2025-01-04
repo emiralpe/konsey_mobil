@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { useState } from 'react'
 import tailwind from 'twrnc'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Feather from '@expo/vector-icons/Feather';
@@ -8,7 +9,7 @@ import { SelectList } from 'react-native-dropdown-select-list';
 
 export default function Okimer() {
     const navigation = useNavigation();
-    const [selected, setSelected] = React.useState("");
+    const [selected, setSelected] = useState("");
   
   const data = [
       {key:'1', value:'Konu'},

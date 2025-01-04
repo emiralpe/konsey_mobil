@@ -15,15 +15,15 @@ export default function Buttons() {
         <Fontisto className='ml-3' name="world" size={24} color="#fff" />
         <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Kulüpler</Text>
       </TouchableOpacity>
-      <TouchableOpacity className='flex-row items-center bg-[#24428a] rounded-lg w-50 py-4'>
+      <TouchableOpacity onPress={()=> navigation.navigate('Events')} className='flex-row items-center bg-[#24428a] rounded-lg w-50 py-4'>
         <Feather className='ml-3' name="smartphone" size={24} color="#fff" />
         <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Etkinlikler</Text>
       </TouchableOpacity>
-      <TouchableOpacity className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
+      <TouchableOpacity onPress={()=> navigation.navigate('EventJoin')} className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
         <Feather className='ml-3' name="list" size={24} color="#fff" />
         <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Etkinlik Giriş</Text>
       </TouchableOpacity>
-      <TouchableOpacity className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
+      <TouchableOpacity onPress={()=> navigation.navigate('News')} className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
         <Feather className='ml-3' name="book-open" size={24} color="#fff" />
         <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Haberler</Text>
       </TouchableOpacity>

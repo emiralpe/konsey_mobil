@@ -12,6 +12,10 @@ import HomePageScreen from "./components/HomePageScreen";
 import SupportScreen from "./components/SupportScreen";
 import OkimerScreen from "./components/OkimerScreen";
 import ClubsScreen from "./components/ClubsScreen";
+import EventsPage from "./components/EventsScreen";
+import EventsScreen from "./components/EventsScreen";
+import EventJoinScreen from "./components/EventJoinScreen";
+import NewsScreen from "./components/NewsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +55,9 @@ export default function App() {
         <Stack.Screen name="Support" component={SupportScreen} />
         <Stack.Screen name="Okimer" component={OkimerScreen} />
         <Stack.Screen name="Clubs" component={ClubsScreen} />
+        <Stack.Screen name="Events" component={EventsScreen} />
+        <Stack.Screen name="EventJoin" component={EventJoinScreen} />
+        <Stack.Screen name="News" component={NewsScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>
