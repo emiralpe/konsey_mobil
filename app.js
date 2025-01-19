@@ -4,6 +4,7 @@ const swaggerJsDoc = require("swagger-jsdoc");
 const bodyParser = require("body-parser");
 const users = require("./routes/users");
 const interests = require("./routes/interests");
+const clubs = require("./routes/clubs");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require('dotenv').config();
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use("/api/users", users);
 app.use("/api/interests", interests);
+app.use("/api/clubs", clubs);
 app.use(cors({
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"]

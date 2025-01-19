@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const {User, validateRegister, validateLogin} = require('../models/user');
 const auth = require('../middleware/auth');
 
+//#region Get All Users
 /**
  * @swagger
  * /api/users/get:
@@ -21,10 +22,12 @@ const auth = require('../middleware/auth');
  *                 type: object
  */
 router.get('/get',  async (req, res) => {
-    const users = await User.find().select('-__v -password').populate('interests', 'name -_id');
+    const users = await User.find().select('-__v -password').populate('interests', 'name');
     res.send(users);
 });
+// #endregion
 
+//#region Get User By ID
 /**
  * @swagger
  * /api/users/get/{id}:
@@ -57,7 +60,9 @@ router.get('/get/:id', async (req, res) => {
 
     res.send(user);
 });
+//#endregion
 
+//#region Post User Create
 /**
  * @swagger
  * /api/users/post:
@@ -133,7 +138,9 @@ router.post('/post', async (req, res) => {
         console.log(error.message);
     }
 });
+//#endregion
 
+//#region Post Auth User
 /**
  * @swagger
  * /api/users/auth:
@@ -180,7 +187,9 @@ router.post('/auth', async (req, res) => {
 
     res.send(token);
 });
+//#endregion
 
+//#region Put User Update
 /**
  * @swagger
  * /api/users/put/{id}:
@@ -258,7 +267,9 @@ router.put('/put/:id', async (req, res) => {
     const updatedUser = await user.save();
     res.status(200).send(updatedUser);
 });
+//#endregion
 
+//#region Delete User
 /**
  * @swagger
  * /api/users/delete/{id}:
@@ -287,5 +298,6 @@ router.delete('/delete/:id', async (req, res) => {
 
     res.send(user);
 });
+//#endregion
 
 module.exports = router;
