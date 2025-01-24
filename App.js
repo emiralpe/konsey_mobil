@@ -16,6 +16,7 @@ import EventsPage from "./components/EventsScreen";
 import EventsScreen from "./components/EventsScreen";
 import EventJoinScreen from "./components/EventJoinScreen";
 import NewsScreen from "./components/NewsScreen";
+import StudentDecision from "./components/StudentDecision";
 
 const Stack = createNativeStackNavigator();
 
@@ -58,6 +59,7 @@ export default function App() {
         <Stack.Screen name="Events" component={EventsScreen} />
         <Stack.Screen name="EventJoin" component={EventJoinScreen} />
         <Stack.Screen name="News" component={NewsScreen} />
+        <Stack.Screen name="Company" component={StudentDecision} />
 
       </Stack.Navigator>
     </NavigationContainer>

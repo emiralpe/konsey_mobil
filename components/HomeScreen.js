@@ -14,8 +14,6 @@ import LoginScreen from "./LoginScreen";
 import { useNavigation } from '@react-navigation/native';
 
 
-
-
 export default function HomeScreen() {
   const navigation = useNavigation();
 

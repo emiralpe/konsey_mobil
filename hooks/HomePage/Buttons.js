@@ -27,7 +27,7 @@ export default function Buttons() {
         <Feather className='ml-3' name="book-open" size={24} color="#fff" />
         <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Haberler</Text>
       </TouchableOpacity>
-      <TouchableOpacity className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
+      <TouchableOpacity onPress={()=> navigation.navigate('Company')} className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
       <MaterialCommunityIcons className='ml-3' name="sale" size={24} color="#fff" />
         <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Öğrenci Tercihi</Text>
       </TouchableOpacity>
