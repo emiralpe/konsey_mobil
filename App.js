@@ -18,6 +18,7 @@ import EventJoinScreen from "./components/EventJoinScreen";
 import NewsScreen from "./components/NewsScreen";
 import StudentDecision from "./components/StudentDecision";
 
+
 const Stack = createNativeStackNavigator();
 
 

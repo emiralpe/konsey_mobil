@@ -39,7 +39,7 @@ export default function Interests({ onSelectInterests }) {
 
   return (
     <View className='w-[100%]'>
-      <View className='items-center justify-start flex-row gap-2 flex-wrap'>
+      <View className='items-center justify-center flex-row gap-2 flex-wrap'>
         {interests1.map((interests1, index) => {
           const isSelected = interests.includes(interests1._id);
           return (
