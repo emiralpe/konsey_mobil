@@ -11,16 +11,19 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function LoginScreen() {
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const [studentNumber, setStudentNumber] = useState('');
   const navigation = useNavigation();
 
   const handleLogin = async () => {
     const loginData = {
-      email: email,
-      password: password,
+      studentNumber: studentNumber, // Öğrenci numarası
+      password: password, // Şifre
     };
+  
+    console.log('Giriş denemesi yapılıyor...', loginData); // İstek verisini kontrol et
+  
     try {
-      const response = await fetch('http://localhost:3000/api/users/auth', {
+      const response = await fetch('http://localhost:3000/api/users/auth', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,21 +31,45 @@ export default function LoginScreen() {
         body: JSON.stringify(loginData),
       });
   
-      const text = await response.text();
-      console.log('Response data:', text);
+      const contentType = response.headers.get('Content-Type'); // İçeriğin türünü kontrol et
+      console.log('Content-Type:', contentType);
   
-      if (response.status == 200) {
+      // Gelen cevabın json halini al
+      const responseText = await response.text();
+      console.log('Raw Response:', responseText); // Json yanıtı ekrana yazdır
+  
+      if (!contentType || !contentType.includes('application/json')) {
+        Alert.alert('Hata', 'Beklenmeyen bir yanıt alındı. Lütfen sunucu yanıtını kontrol edin.');
+        return;
+      }
+  
+      // Gelen yanıtı JSON olarak parse etmeye çalış
+      let responseData;
+      try {
+        
+        responseData = JSON.parse(responseText);
+        
+      } catch (jsonError) {
+        console.error('JSON Parse Error:', jsonError);
+        Alert.alert('Hata', `Sunucudan beklenmeyen yanıt alındı:\n${responseText}`);
+        return;
+      }
+  
+      console.log('Parsed Response:', responseData); // JSON çevrildikten sonra ekrana yazdır
+  
+      if (response.status === 200) {
         Alert.alert('Başarılı', 'Giriş başarılı!', [
           { text: 'Tamam', onPress: () => navigation.navigate('HomePage') },
         ]);
       } else {
-        Alert.alert('Hata', 'E-mail veya şifre yanlış!');
+        Alert.alert('Hata', responseData.message || 'E-mail veya şifre yanlış!');
       }
     } catch (error) {
       console.error('Error:', error);
-      Alert.alert('Hata', 'Bir sorun oluştu. Lütfen tekrar deneyiniz.');
+      Alert.alert('Hata', 'Sunucuya bağlanırken bir hata oluştu.');
     }
   };
+  
   return (
     <View>
       <ImageBackground
@@ -60,7 +87,7 @@ export default function LoginScreen() {
           {/* <Text className='text-2xl ml-8 mb-3 text-[white]' style={{ fontFamily: "SemiBold" }}>Konsey Mobil'e Hoş Geldiniz</Text>
           <Text className='text-3xl ml-8 mb-3 text-[white]' style={{ fontFamily: "Bold" }}>Mert Dal</Text> */}
           <View className='flex-row mt-4 mx-auto w-[100%] justify-center'>
-            <TextInput value={email} onChangeText={(text)=>setEmail(text.toLowerCase())} autoCapitalize='none' className='border-b-2 border-b-white w-[300]  px-3 py-2 text-xl text-[#fff]' placeholder="E-Mail" placeholderTextColor="gray"  />
+            <TextInput value={studentNumber} onChangeText={(text)=>setStudentNumber(text.toLowerCase())} autoCapitalize='none' className='border-b-2 border-b-white w-[300]  px-3 py-2 text-xl text-[#fff]' placeholder="Öğrenci No" placeholderTextColor="gray"  />
           </View>
           <View className='flex-row mt-4 mx-auto w-[100%] justify-center'>
             <TextInput maxLength={6} value={password} onChangeText={setPassword} keyboardType='numeric' className='border-b-2 w-[270] border-b-white  px-3 py-2 text-xl text-[#fff]' placeholder="Şifre" placeholderTextColor="gray" secureTextEntry />
