@@ -6,10 +6,9 @@ import Feather from '@expo/vector-icons/Feather';
 import Checkbox from 'expo-checkbox';
 import { useNavigation } from '@react-navigation/native';
 import StepIndicator from '../hooks/StepIndicator/StepIndicator';
-export default function SignUpScreen() {
+export default function SignUpScreen({ navigation }) {
   const [step, setStep] = useState(1); // Kayıt adımlarını takip eden state
   const [modalVisible, setModalVisible] = useState(true);
-  const navigation = useNavigation()
   const [isRegistered, setIsRegistered] = useState(false);
   const [name, setName] = useState(null);
   const [surname, setSurname] = useState(null);
@@ -143,6 +142,7 @@ export default function SignUpScreen() {
         return value;
       };
       return traverse(obj);
+      
     };
 
     const sanitizedData = removeCircularReferences(signUpData);
@@ -160,15 +160,13 @@ export default function SignUpScreen() {
       const data = JSON.parse(text); // JSON'a dönüştürmeyi dene
       console.log(data)
       if (response.ok) {
-        Alert.alert('Başarılı', 'Kayıt başarılı!', [
+        Alert.alert('Kayıt başarılı!', 'Başarıyla kayıt oldunuz.', [
           {
             text: 'Tamam',
-            onPress: async () => {
-              // Navigasyonu burada async bir fonksiyon içinde yapıyoruz
-              await navigation.navigate('Login');
-            },
+            onPress: () => setTimeout(() => navigation.replace('Login'), 500),
           },
         ]);
+        
       }
     } catch (error) {
       console.error('Error:', error);
@@ -188,7 +186,7 @@ export default function SignUpScreen() {
                 {step === 1 && (
                   <View>
                     <Text className="text-2xl text-[#24428a] ml-4">Adınız</Text>
-                    <TextInput value={name} onChangeText={setName} className="border border-[#24428a] p-3 mx-4 my-2 rounded-xl" />
+                    <TextInput  value={name} onChangeText={setName} className="border border-[#24428a] p-3 mx-4 my-2 rounded-xl" />
                     <Text className="text-2xl text-[#24428a] ml-4">Soyadınız</Text>
                     <TextInput value={surname} onChangeText={setSurname} className="border border-[#24428a] p-3 mx-4 my-2 rounded-xl" />
                     <Text className="text-2xl text-[#24428a] ml-4">Doğum Tarihiniz</Text>
@@ -243,9 +241,19 @@ export default function SignUpScreen() {
                    <View>
                    <Text className="text-2xl text-[#24428a] ml-4">Şifre Oluştur</Text>
                    <Text className='text-[#8b8b8b] ml-4'>Maksimum 6 karakter ve sayılardan oluşmalıdır.</Text>
-                   <TextInput value={password} maxLength={6} onChangeText={setPassword} secureTextEntry className="border border-[#24428a] p-3 mx-4 my-2 rounded-xl" />
+                   <TextInput onChangeText={(text) => {
+    // Sadece rakamları kabul et
+    if (/^\d*$/.test(text)) {
+      setPassword(text);
+    }
+  }} value={password} keyboardType='numeric' maxLength={6}  secureTextEntry className="border border-[#24428a] p-3 mx-4 my-2 rounded-xl" />
                    <Text className="text-2xl text-[#24428a] ml-4">Şifreyi Doğrula</Text>
-                   <TextInput value={password2} maxLength={6} onChangeText={setPassword2} secureTextEntry className="border border-[#24428a] p-3 mx-4 my-2 rounded-xl" />
+                   <TextInput onChangeText={(text) => {
+    // Sadece rakamları kabul et
+    if (/^\d*$/.test(text)) {
+      setPassword2(text);
+    }
+  }} value={password2} keyboardType='numeric' maxLength={6}  secureTextEntry className="border border-[#24428a] p-3 mx-4 my-2 rounded-xl" />
                    <View className='flex-row items-center justify-center mt-5 mx-8'>
               <Checkbox value={isChecked} onValueChange={setChecked} className="mr-3" color={isChecked ? '#24428a' : undefined} style={{ borderRadius: 5 }} />
               <Text className="text-sm" style={{ color: '#24428a' }}>
@@ -257,7 +265,7 @@ export default function SignUpScreen() {
                        <Text className="text-white text-center">Geri</Text>
                      </TouchableOpacity>
                      
-                     <TouchableOpacity onPress={handleSignUp} className="bg-[#0fb000] justify-center py-3 w-[30%]  rounded-full">
+                     <TouchableOpacity  onPress={handleSignUp} className="bg-[#0fb000] justify-center py-3 w-[30%]  rounded-full">
                       <Text className="text-white text-center">Kayıt Ol</Text>
                     </TouchableOpacity>
                    </View>

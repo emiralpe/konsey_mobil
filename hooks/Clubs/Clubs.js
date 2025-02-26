@@ -20,7 +20,7 @@ export default function Clubs() {
                 <Text className='text-[#2AB8E7] text-xl mr-5 font-[Bold]'>Tümü</Text>
             </View>
             <View className='items-center'>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("ClubDetails")}>
 
                     <View className='w-[90%] col-span-12 shadow items-center flex-row rounded-xl mt-4 h-28 bg-[#fff]'>
                         <Image className=' ml-2 col-span-3 rounded-full w-24 h-24' source={require('../../assets/oklogo.png')} />
@@ -56,7 +56,7 @@ export default function Clubs() {
                 <Text className='text-[#2AB8E7] text-xl mr-5 font-[Bold]'>Tümü</Text>
             </View>
             <View className='items-center'>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("ClubDetails2")}>
 
                 <View className='w-[90%] shadow col-span-12 items-center flex-row rounded-xl mt-4 h-28 bg-[#fff]'>
                     <Image className=' ml-2 col-span-3 rounded-full w-24 h-24' source={require('../../assets/oklogo.png')} />
