@@ -8,7 +8,17 @@ import {
 import React, { useEffect, useState } from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// Token ve ID'yi kaydetmek için bir fonksiyon
+const saveUserData = async (token, _id) => {
+  try {
+    await AsyncStorage.setItem('userToken', token);
+    await AsyncStorage.setItem('userId', _id);
+  } catch (error) {
+    console.error('Error saving user data:', error);
+  }
+};
 export default function LoginScreen() {
   const [password, setPassword] = useState('');
   const [studentNumber, setStudentNumber] = useState('');
@@ -58,6 +68,8 @@ export default function LoginScreen() {
       console.log('Parsed Response:', responseData); // JSON çevrildikten sonra ekrana yazdır
   
       if (response.status === 200) {
+        const { token, _id } = responseData; // Gelen yanıtın içeriğine göre düzenleyin
+        await saveUserData(token, _id); // Token ve ID'yi kaydet
         Alert.alert('Başarılı', 'Giriş başarılı!', [
           { text: 'Tamam', onPress: () => navigation.navigate('HomePage') },
         ]);
