@@ -78,7 +78,7 @@ export default function OfferDetails({ route }) {
         }
       } else {
         const data = await response.json();
-        const codeId = data.codeId; // Assuming the response contains a codeId
+        const codeId = data.code; // Assuming the response contains a codeId
         fetchGeneratedCode(codeId);
       }
     } catch (error) {
@@ -86,7 +86,7 @@ export default function OfferDetails({ route }) {
       ToastAndroid.show("Kod alınamadı!", ToastAndroid.SHORT);
     }
   };
-
+  
   const fetchGeneratedCode = async (codeId) => {
     try {
       const token = await AsyncStorage.getItem('userToken');

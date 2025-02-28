@@ -77,34 +77,33 @@ export default function Offer() {
           <Text className='text-[#2AB8E7] text-2xl font-[Bold]'>Filtrele</Text>
         </TouchableOpacity>
       </View>
-      <View>
-        <FlatList
-          data={filteredData}
-          keyExtractor={item => item._id}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => handlePress(item)}>
-              <View className='w-[90%] m-auto shadow items-center flex-row rounded-xl mt-4 h-28 bg-[#fff]'>
-                <View className='flex-1'>
-                  <View className='flex-row'>
-                    <View className='flex-1 justify-center'>
-                      <Text numberOfLines={2} ellipsizeMode='tail' className='text-[#2AB8E7] text-lg font-[Semibold] ml-2'>{item.title}</Text>
-                      <Text ellipsizeMode='tail' className=' text-base ml-2'>{item.description}</Text>
-                      <View className='w-20 items-center flex-row mt-1 ml-1 '>
-                        {item.tag && (
-                          <Text className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
-                            {item.tag}
-                          </Text>
-                        )}
-                      </View>
+      
+      <FlatList
+        data={filteredData}
+        keyExtractor={item => item._id}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => handlePress(item)}>
+            <View className='w-[90%] m-auto shadow items-center flex-row rounded-xl mt-4 h-28 bg-[#fff]'>
+              <View className='flex-1'>
+                <View className='flex-row'>
+                  <View className='flex-1 justify-center'>
+                    <Text numberOfLines={2} ellipsizeMode='tail' className='text-[#2AB8E7] text-lg font-[Semibold] ml-2'>{item.title}</Text>
+                    <Text ellipsizeMode='tail' className=' text-base ml-2'>{item.description}</Text>
+                    <View className='w-20 items-center flex-row mt-1 ml-1 '>
+                      {item.tag && (
+                        <Text className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
+                          {item.tag}
+                        </Text>
+                      )}
                     </View>
-                    <Image source={{ uri: item.imageUrl }} className='max-w-28 max-h-28 rounded-xl ml-2' />
                   </View>
+                  <Image source={{ uri: item.imageUrl }} className='max-w-28 max-h-28 rounded-xl ml-2' />
                 </View>
               </View>
-            </TouchableOpacity>
-          )}
-        />
-      </View>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
     </SafeAreaView>
   );
 }
