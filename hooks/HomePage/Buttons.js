@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function Buttons() {
   const navigation = useNavigation();
   return (
-    <View className='flex-row flex-wrap justify-between mx-5'>
+    <View className='flex-row flex-wrap justify-between mx-5 mb-5'>
       <TouchableOpacity onPress={()=> navigation.navigate('Clubs')} className='flex-row items-center  bg-[#24428a] rounded-lg w-50 py-4'>
         <Fontisto className='ml-3' name="world" size={24} color="#fff" />
         <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Kulüpler</Text>
@@ -31,17 +31,23 @@ export default function Buttons() {
       <MaterialCommunityIcons className='ml-3' name="sale" size={24} color="#fff" />
         <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Öğrenci Tercihi</Text>
       </TouchableOpacity>
-      <TouchableOpacity className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
+      <TouchableOpacity onPress={()=> navigation.navigate('Notifications')} className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
       <Ionicons className='ml-3' name="notifications-outline" size={24} color="#fff" />
-        <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Bildirimler</Text>
+        <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Duyurular</Text>
       </TouchableOpacity>
-      <TouchableOpacity className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
+      <TouchableOpacity onPress={()=> navigation.navigate('Account')} className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
       <MaterialIcons name="person-outline" className='ml-3' size={24} color="#fff" />
         <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Hesabım</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={()=>navigation.navigate("Support")} className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
       <FontAwesome className='ml-3' name="support" size={24} color="#fff" />   
         <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Yardım</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={()=> navigation.navigate('Food')}>
+        <View className='flex-row items-center mt-3 bg-[#24428a] rounded-lg w-50 py-4'>
+        <Ionicons className='ml-3' name="fast-food-outline" size={24} color="#fff" />
+          <Text className='text-[#fff] font-[Bold] ml-3 text-base'>Yemek Listesi</Text>
+        </View>
       </TouchableOpacity>
     </View>
   )

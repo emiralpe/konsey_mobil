@@ -1,15 +1,18 @@
-import { ActivityIndicator, Image, SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { AntDesign, Feather } from '@expo/vector-icons';
+import { ActivityIndicator, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { AntDesign, Feather, FontAwesome, FontAwesome5, FontAwesome6 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import Socials from '../hooks/ClubDetails/SocialMedia/Socials.js';
 import ClubDetailsButtons2 from '../hooks/ClubDetails/Buttons/ClubDetailsButtons2.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Linking } from 'react-native';
 export default function ClubDetailsScreen2({route}) {
   const { clubId } = route.params;
   const navigation = useNavigation();
   const [clubDetails, setClubDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [rating, setRating] = useState(null);
+    const [socialMedia, setSocialMedia] = useState({});
   useEffect(() => {
     const fetchClubDetails = async () => {
       try {
@@ -24,6 +27,8 @@ export default function ClubDetailsScreen2({route}) {
         const data = await response.json();
         if (response.ok) {
           setClubDetails(data);
+          setRating(data.rating);
+          setSocialMedia(data.socialMedia[0]);
         } else {
           console.error('Error fetching club details:', data.message);
         }
@@ -65,8 +70,26 @@ export default function ClubDetailsScreen2({route}) {
       <View className='flex-row items-center justify-center w-full px-7 mt-5'>
         <Text className='text-center'>{clubDetails.description}</Text>
       </View>
-      <Socials />
-      <ClubDetailsButtons2 />
+      <View className='border-b border-[gray]'>
+              <View className='flex-row items-center justify-between mt-3 mx-10 mb-2 '>
+                <View className='flex-row items-center'>
+                  <FontAwesome name="star" size={36} color="orange" />
+                  <Text className='ml-2 font-[Bold] text-2xl'>{rating}</Text>
+                </View>
+                <View className='flex-row items-center'>
+                  <TouchableOpacity onPress={() => socialMedia.instagram && Linking.openURL(socialMedia.instagram)}>
+                    <AntDesign className='mr-2' name="instagram" size={28} color="purple" />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => socialMedia.twitter && Linking.openURL(socialMedia.twitter)}>
+                    <FontAwesome6 className='mr-2' name="x-twitter" size={24} color="black" />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => socialMedia.facebook && Linking.openURL(socialMedia.facebook)}>
+                    <FontAwesome5 name="facebook-f" size={22} color="blue" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+      <ClubDetailsButtons2 clubId={clubId}/>
     </SafeAreaView>
   )
 }

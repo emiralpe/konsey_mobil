@@ -16,7 +16,7 @@ export default function SupportScreen() {
           <View className='flex-row mt-20 items-center justify-between'>
              <AntDesign onPress={()=>navigation.goBack("HomePage")} name="arrowleft" className='ml-5' size={40} color="#2AB8E7"  />
             <Text className=' mx-5 text-[#24428a] text-3xl font-[Bold]'>Yardım</Text>
-            <Feather name="home" className='mr-5' size={35} color="#2AB8E7"/>
+            <Feather onPress={()=>navigation.navigate("HomePage")} name="home" className='mr-5' size={35} color="#2AB8E7"/>
           </View>
          <Text className='font-[Bold] text-[#24428a] text-3xl ml-5 mt-10 mb-5'>Sıkça Sorulan Sorular 😂</Text>
          <TouchableOpacity onPress={() => setModalVisible(true)} className='flex-row items-center w-full px-5 border-b border-b-gray-400'>

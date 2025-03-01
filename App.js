@@ -12,13 +12,19 @@ import HomePageScreen from "./components/HomePageScreen";
 import SupportScreen from "./components/SupportScreen";
 import OkimerScreen from "./components/OkimerScreen";
 import ClubsScreen from "./components/ClubsScreen";
-import EventsPage from "./components/EventsScreen";
 import EventsScreen from "./components/EventsScreen";
 import EventJoinScreen from "./components/EventJoinScreen";
 import NewsScreen from "./components/NewsScreen";
-import StudentDecision from "./components/StudentDecision";
 import ClubDetailsScreen from "./components/ClubDetailsScreen";
 import ClubDetailsScreen2 from "./components/ClubDetailsScreen2";
+import AllClubsScreen from "./components/AllClubsScreen";
+import NotificationsScreen from "./components/NotificationsScreen";
+import AllOtherClubs from "./hooks/Clubs/AllOtherClubs";
+import EventsDetailScreen from "./components/EventsDetailScreen";
+import OfferDetails from "./hooks/Offers/OfferDetails";
+import Offer from "./hooks/Offers/Offer";
+import AccountScreen from "./components/AccountScreen";
+import FoodScreen from "./components/FoodScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -62,10 +68,17 @@ export default function App() {
         <Stack.Screen name="Events" component={EventsScreen} />
         <Stack.Screen name="EventJoin" component={EventJoinScreen} />
         <Stack.Screen name="News" component={NewsScreen} />
-        <Stack.Screen name="Company" component={StudentDecision} />
+        <Stack.Screen name="Company" component={Offer} />
         <Stack.Screen name="ClubDetails" component={ClubDetailsScreen} />
         <Stack.Screen name="ClubDetails2" component={ClubDetailsScreen2} />
-        
+        <Stack.Screen name="AllClubs" component={AllClubsScreen} />
+        <Stack.Screen name="Notifications" component={NotificationsScreen} />
+        <Stack.Screen name="AllOtherClubs" component={AllOtherClubs} />
+        <Stack.Screen name="EventDetail" component={EventsDetailScreen} />
+        <Stack.Screen name="OfferDetails" component={OfferDetails} />
+        <Stack.Screen name="Account" component={AccountScreen} />
+        <Stack.Screen name="Food" component={FoodScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Company from '../hooks/Companys/Company'
+import Company from '../hooks/Offers/Offer.js'
 
 export default function StudentDecision() {
   return (
